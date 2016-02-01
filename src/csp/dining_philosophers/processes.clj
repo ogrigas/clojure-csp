@@ -31,8 +31,9 @@
         (recur)))
     [pick-up-ch put-down-ch]))
 
-(defn random-timeout [from to]
-  (timeout (* 200 (+ from (rand-int (- (inc to) from))))))
+(defn random-timeout [activity]
+  (let [min-delay (case activity :think 2000 :eat 1000)]
+    (timeout (+ min-delay (rand-int 3000)))))
 
 (defn start-philosopher [i
                          [lfork-pick-up-ch lfork-put-down-ch]
@@ -41,15 +42,14 @@
                          log]
   (go-loop []
     (when @running
-      ;; thinking...
-      (<! (random-timeout 2 7))
+      (<! (random-timeout :think))
 
       (>! room-entry-ch i)
       (>! lfork-pick-up-ch i)
       (>! rfork-pick-up-ch i)
 
       (log :philosopher i :started-eating)
-      (<! (random-timeout 5 10))
+      (<! (random-timeout :eat))
       (log :philosopher i :stopped-eating)
 
       (>! lfork-put-down-ch i)
