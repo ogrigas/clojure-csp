@@ -35,7 +35,7 @@
 
 (defn draw-fork! [status]
   (if (= :lying status) (fill 255) (fill 255 0 0))
-  (let [x (case status :lying 0 :left-held 28 :right-held -28)
+  (let [x (case status :lying 0 :left-held -28 :right-held 28)
         y (if (= :lying status) 75 85)]
     (rect x y 4 35)))
 
@@ -43,7 +43,7 @@
   (with-translation [0 (case location :table 120 :outside 170)]
     (fill 50 130 150)
     (rect -30 -15 10 30)
-    (rect 30 -15 10 30)2
+    (rect 30 -15 10 30)
     (rect 0 0 70 20)
     (fill 10 80 100)
     (ellipse 0 0 30 30)))
@@ -57,7 +57,7 @@
         (with-rotation [(* (/ i population) TWO-PI)]
           (draw-plate! (plates i))
           (draw-philosopher! (philosophers i)))
-        (with-rotation [(* (/ (+ i 0.5) population) TWO-PI)]
+        (with-rotation [(* (/ (- i 0.5) population) TWO-PI)]
           (draw-fork! (forks i)))))))
 
 (defsketch dpsketch

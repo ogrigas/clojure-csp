@@ -26,14 +26,17 @@
         put-down-ch (chan)]
     (go-loop []
       (when @running
-        (log :fork i :picked-up-by (<! pick-up-ch))
-        (log :fork i :put-down-by (<! put-down-ch))
+        (let [phil (<! pick-up-ch)]
+          (log :fork i :picked-up-by phil))
+        (let [phil (<! put-down-ch)]
+          (log :fork i :put-down-by phil))
         (recur)))
     [pick-up-ch put-down-ch]))
 
 (defn random-timeout [activity]
-  (let [min-delay (case activity :think 2000 :eat 1000)]
-    (timeout (+ min-delay (rand-int 3000)))))
+  (let [init-delay (case activity :think 1000 :eat 200)
+        rand-delay (case activity :think 2000 :eat 1000)]
+    (timeout (+ init-delay (rand-int rand-delay)))))
 
 (defn start-philosopher [i
                          [lfork-pick-up-ch lfork-put-down-ch]
