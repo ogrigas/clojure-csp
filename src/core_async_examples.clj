@@ -131,7 +131,7 @@
 ;; for the "full" case.  Two useful examples are provided in the API.
 
 ;; Use `dropping-buffer` to drop newest values when the buffer is full:
-;; todo
+(chan (async/dropping-buffer 10))
 
 ;; Use `sliding-buffer` to drop oldest values when the buffer is full:
 (chan (async/sliding-buffer 10))
