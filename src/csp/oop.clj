@@ -23,13 +23,15 @@
              "balance:" (:balance @state))))
 
 
-(def acc (new-instance account {:number "LT1234" :balance 0}))
+(comment
 
-(acc 'deposit 100)
-(acc 'print-report)
+  (def acc (new-instance account {:number "LT1234" :balance 0}))
 
-(acc 'withdraw 20)
-(acc 'print-report)
+  (acc 'deposit 100)
+  (acc 'print-report)
 
-(acc 'withdraw 99999)
-(acc 'print-report)
+  (acc 'withdraw 20)
+  (acc 'print-report)
+
+  (acc 'withdraw 99999)
+  (acc 'print-report))
