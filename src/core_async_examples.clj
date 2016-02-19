@@ -5,7 +5,6 @@
     [clojure.set :as set]
     [clojure.string :as str]
     [clojure.test :as test]
-    [clojure.tools.namespace.repl :refer [refresh refresh-all]]
     [clojure.core.async :as async
      :refer [>! <! >!! <!! go chan buffer close! thread alts! alts!! timeout]]))
 
@@ -118,7 +117,7 @@
 
 (let [c (chan)
       begin (System/currentTimeMillis)]
-  (alts!! [c (timeout 100) [c2 "xxx"] [c3 "yyy"]])
+  (alts!! [c (timeout 100)])
   (println "Gave up after" (- (System/currentTimeMillis) begin)))
 
 ;; ALT
