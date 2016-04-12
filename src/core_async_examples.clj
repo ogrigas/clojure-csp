@@ -6,7 +6,7 @@
     [clojure.string :as str]
     [clojure.test :as test]
     [clojure.core.async :as async
-     :refer [>! <! >!! <!! go chan buffer close! thread alts! alts!! timeout]]))
+     :refer [>! <! >!! <!! go go-loop chan buffer close! thread alts! alts!! timeout]]))
 
 (def my-chan (chan))
 
