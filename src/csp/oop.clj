@@ -10,15 +10,15 @@
 
 (defn account [state message]
   (match message
-    [:deposit amount]
+    ['deposit amount]
     (vswap! state update :balance + amount)
 
-    [:withdraw amount]
+    ['withdraw amount]
     (if (<= amount (:balance @state))
       (vswap! state update :balance - amount)
       (println "Overdrafts not allowed"))
 
-    [:print-report]
+    ['print-report]
     (println "Account" (:number @state)
              "balance:" (:balance @state))))
 
@@ -27,11 +27,11 @@
 
   (def acc (new-instance account {:number "LT1234" :balance 0}))
 
-  (acc :deposit 100)
-  (acc :print-report)
+  (acc 'deposit 100)
+  (acc 'print-report)
 
-  (acc :withdraw 20)
-  (acc :print-report)
+  (acc 'withdraw 20)
+  (acc 'print-report)
 
-  (acc :withdraw 99999)
-  (acc :print-report))
+  (acc 'withdraw 99999)
+  (acc 'print-report))
