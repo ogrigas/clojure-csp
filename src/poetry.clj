@@ -16,3 +16,21 @@
       P \P
       R \R]
   (print [S H A K E S P E A R E]))
+
+;THE MOST FREQUENT WORDS IN SHAKESPEARE'S WORKS
+;
+; the
+; and
+; i
+; to
+; of
+; a
+; you
+; my
+; in
+; that
+; is
+; not
+; with
+; me
+; it
