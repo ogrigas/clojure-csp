@@ -1,21 +1,31 @@
 (ns poetry)
 
-(let [the count
-      of (the [count repeat count repeat count repeat count repeat count repeat])
-      hate (the [count repeat count repeat count repeat count repeat])
-      love (partial * of)
-      grow +
+(let [the #(.size %)
+      of (the [repeat repeat repeat repeat repeat repeat repeat repeat repeat repeat])
+      high (the [repeat repeat repeat repeat repeat repeat repeat repeat])
+      what #(* of %)
+      how what
+      not +
       coal of
       drawings of
-      say char(coal drawings)
-      S (say (grow (love hate) (the [count of repeat])))
-      H (say (grow (love (dec hate)) (the [repeat count])))
+      ;S=83
+      may +
+      be +
+      ;S=83
+      ask (not (how high) (the [count may be]))
+      ;H=72
+      fear (not (what (dec high)) (the [repeat count]))
+      ;A=65
       A \A
+      ;K=75
       K \K
+      ;E=69
       E \E
+      ;P=80
       P \P
+      ;R=82
       R \R]
-  (print [S H A K E S P E A R E]))
+  (map ^and char^coal [ask fear A K E ask P E A R E]))
 
 ;THE MOST FREQUENT WORDS IN SHAKESPEARE'S WORKS
 ;
